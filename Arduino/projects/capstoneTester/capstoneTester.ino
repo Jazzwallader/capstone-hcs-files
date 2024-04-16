@@ -2,7 +2,8 @@
 SevSeg sevseg; //Initiate a seven segment controller object
 
 unsigned long startTime;
-bool chgState;
+String chgState;
+bool state;
 
 void setup() {
   // Initialize Serial communication at a baud rate of 9600:
@@ -42,9 +43,11 @@ void loop() {
   // Adjust the 'minVoltage' and 'maxVoltage' according to your battery's characteristics and the BMS output
   float minVoltage = 2.4; // Assuming 3.0V as 0% SOC
   float maxVoltage = 4.2; // Assuming 4.2V as 100% SOC
-  float voltage = a5 * (5 / 1023.0);
-  //float soc = (voltage) / (maxVoltage);
-  float soc = a4 / 1023.0;
+  float voltageP = a5 * (5 / 1023.0);
+  float voltageN = a4 * (5 / 1023.0);
+  float voltage = voltageP - voltageN;
+  float soc = (voltage) / (maxVoltage);
+  //float soc = a4 / 1023.0;
 
 
   // Conditions for turning pin 9 ON or OFF
@@ -59,7 +62,25 @@ void loop() {
   //   digitalWrite(9, chgState);
   // }
 
-String serialCSV = String(voltage) + "," + String(soc) + "," + String(minutes) + "," + String(seconds) + "$";
+  if (state == LOW && (soc >= 0.9)) { 
+    state = HIGH;
+    digitalWrite(9, state);
+    chgState = "Discharging...";
+  } else if (state == HIGH && (soc <= 0.25)) {
+    state = LOW;
+    digitalWrite(9, state);
+    chgState = "Charging...";
+  }
+
+  // if (state == LOW ) {
+  //   digitalWrite(9, state);
+  //   state = HIGH;
+  // } else if (state == HIGH) {
+  //   digitalWrite(9, state);
+  //   state = LOW;
+  // }
+
+String serialCSV = String(voltage) + "," + String(soc) + "," + String(minutes) + "," + String(seconds) + "," + String(chgState) + "$";
   // Print the SOC to the Serial Monitor
   //Serial.print("Voltage: ");
   Serial.print(serialCSV);
@@ -67,5 +88,5 @@ String serialCSV = String(voltage) + "," + String(soc) + "," + String(minutes) +
   //Serial.println(sensorValue);
 
   // Wait for a bit to avoid spamming the Serial Monitor
-  delay(1000);
+  delay(100);
 }
