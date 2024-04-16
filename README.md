@@ -5,3 +5,5 @@ https://www.mathworks.com/matlabcentral/fileexchange/40312-simulink-support-pack
 Once this is installed and the setup is complete, connect the (master) Arduino Uno to the controlling PC via USB-B
 
 Master Arduino should be able to power the (slave) Arduino Nano, which is used to update the LCD. 
+
+Please find the master simulation file in the 'FINAL PROJECT SLX' folder.
