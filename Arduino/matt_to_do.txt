@@ -1,0 +1,2 @@
+TO DO:
+Switch battery charging state using relay/mosfet or something

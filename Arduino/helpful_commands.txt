@@ -1,0 +1,50 @@
+[JAVA PROCESSING]
+processing-java --sketch="C:\Users\matty\Documents\_Projects\Arduino\processing\capstoneGUI" --build
+processing-java --sketch="C:\Users\matty\Documents\_Projects\Arduino\processing\capstoneGUI" --run
+
+[FOR ARDUINO UNO]
+arduino-cli compile -p COM3 --fqbn arduino:avr:uno projects/capstoneTester/capstoneTester.ino
+arduino-cli upload -p COM3 --fqbn arduino:avr:uno projects/capstoneTester/capstoneTester.ino
+
+arduino-cli compile -p COM4 --fqbn arduino:avr:nano projects/clock02/clock02.ino
+arduino-cli upload -p COM4 --fqbn arduino:avr:nano projects/clock02/clock02.ino
+
+
+
+
+processing-java --sketch="C:\Users\matty\Documents\_Projects\Arduino\processing\capstoneGUI" --build
+processing-java --sketch="C:\Users\matty\Documents\_Projects\Arduino\processing\capstoneGUI" --run
+
+Examples:
+  arduino-cli <command> [flags...]
+
+Available Commands:
+  board           Arduino board commands.
+  burn-bootloader Upload the bootloader.
+  cache           Arduino cache commands.
+  compile         Compiles Arduino sketches.
+  completion      Generates completion scripts
+  config          Arduino configuration commands.
+  core            Arduino core operations.
+  daemon          Run as a daemon on port: 50051
+  debug           Debug Arduino sketches.
+  help            Help about any command
+  lib             Arduino commands about libraries.
+  monitor         Open a communication port with a board.
+  outdated        Lists cores and libraries that can be upgraded
+  sketch          Arduino CLI sketch commands.
+  update          Updates the index of cores and libraries
+  upgrade         Upgrades installed cores and libraries.
+  upload          Upload Arduino sketches.
+  version         Shows version number of Arduino CLI.
+
+Flags:
+      --additional-urls strings   Comma-separated list of additional URLs for the Boards Manager.
+      --config-file string        The custom config file (if not specified the default will be used).
+      --format string             The output format for the logs, can be: text, json, jsonmini, yaml (default "text")
+  -h, --help                      help for arduino-cli
+      --log                       Print the logs on the standard output.
+      --log-file string           Path to the file where logs will be written.
+      --log-format string         The output format for the logs, can be: text, json
+      --log-level string          Messages with this level and above will be logged. Valid levels are: trace, debug, info, warn, error, fatal, panic
+      --no-color                  Disable colored output.

@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:uno",
+    "port": "COM6",
+    "path": "C:\\Program Files\\Arduino CLI\\arduino-cli.exe",
+    "programmer": "avrisp"
+}
